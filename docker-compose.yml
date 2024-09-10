@@ -1,0 +1,18 @@
+version: "3.7" # Version of docker-compose
+services: # List of services
+  item-app: # Service name
+    image: ghcr.io/rellzy27/item-app:v1   # Image source
+    ports:  # Exposed ports
+      - 80:8080
+    depends_on: # Dependencies to start after
+      - item-db
+    restart: always # Restart policy
+
+  item-db: # Service name
+    image: mongo:3 # Image source
+    volumes: # Volumes
+      - app-db:/data/db # Bind volume
+    restart: always # Restart policy
+
+volumes: # List of volumes
+  app-db: # Volume name
